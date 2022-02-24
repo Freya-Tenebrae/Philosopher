@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 04:46:01 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/24 06:13:40 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/02/24 06:40:53 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ int		main(int argc, char **argv);
 /*                                   TOOLS                                    */
 /* ************************************************************************** */
 size_t	ft_atoi(const char *str);
-int		init(t_scene *scene, int argc, char **argv);
+int		parsing(t_scene *scene, int argc, char **argv);
+int		init(t_scene *scene);
 
 /* ************************************************************************** */
 /*                                    END                                     */
