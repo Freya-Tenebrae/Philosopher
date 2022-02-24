@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 04:46:01 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/24 05:45:37 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/02/24 06:38:14 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,18 @@
 
 int	main(int argc, char **argv)
 {
-	if (argc == 5 || argc == 6)
+	t_scene	scene;
+
+	if (argc != 5 && argc != 6)
 	{
-		// init var (struct);
-		// create all thread
-		// loop while all philo are alive / philo eat n time (if argc == 6)
-		// join all thread
-		(void)argv;
-		return (0);
-	}
-	else
-	{
-		printf("Error : incorrect number of arguments.");
+		printf("Error : incorrect number of arguments.\n");
 		printf("%i arguments given, 4 or 5 expected.\n", argc - 1);
 		return (-1);
 	}
+	if (init(&scene, argc, argv) != 0)
+		return (-1);
+	// create all thread
+	// loop while all philo are alive / philo eat n time (if argc == 6)
+	// join all thread
+	return (0);
 }
