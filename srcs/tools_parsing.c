@@ -6,13 +6,34 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 05:49:57 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/24 06:42:34 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/02/24 06:49:31 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-static int	parsing(t_scene *scene, int argc, char **argv)
+int	parsing_2(t_scene *scene, int argc, char **argv)
+{
+	if (argc == 6)
+	{
+		scene->number_of_time_eating_set = 1;
+		scene->number_of_time_eating = ft_atoi(argv[5]);
+		if (scene->number_of_time_eating <= 0)
+		{
+			printf("Error : incorrect number of time each philosopher ");
+			printf("must eat.\n");
+			return (-1);
+		}
+	}
+	else
+	{
+		scene->number_of_time_eating_set = 0;
+		scene->number_of_time_eating = 0;
+	}
+	return (0);
+}
+
+int	parsing(t_scene *scene, int argc, char **argv)
 {
 	scene->nbr_philo = ft_atoi(argv[1]);
 	if (scene->nbr_philo <= 0)
@@ -38,21 +59,5 @@ static int	parsing(t_scene *scene, int argc, char **argv)
 		printf("Error : time to sleep can't be null or negetive.\n");
 		return (-1);
 	}
-	if (argc == 6)
-	{
-		scene->number_of_time_eating_set = 1;
-		scene->number_of_time_eating = ft_atoi(argv[5]);
-		if (scene->number_of_time_eating <= 0)
-		{
-			printf("Error : incorrect number of time each philosopher ");
-			printf("must eat.\n");
-			return (-1);
-		}
-	}
-	else
-	{
-		scene->number_of_time_eating_set = 0;
-		scene->number_of_time_eating = 0;
-	}
-	return (0);
+	return (parsing_2(scene, argc, argv));
 }
