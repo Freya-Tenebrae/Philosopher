@@ -6,40 +6,36 @@
 #    By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/14 23:11:43 by cmaginot          #+#    #+#              #
-#    Updated: 2022/02/24 04:47:52 by cmaginot         ###   ########.fr        #
+#    Updated: 2022/02/24 05:31:47 by cmaginot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME=philo
 
 SRCS=$(addprefix ${FOLDER}/, \
-	ft_philo.c)
-SRCS_BONUS=$(addprefix ${FOLDER}/, \
-	ft_philo.c)
+	philo.c \
+	ft_tools_atoi.c)
 OBJS=$(SRCS:.c=.o)
-OBJS_BONUS=$(SRCS_BOUNS:.c=.o)
 
 INCLUDES=$(addprefix includes/, \
-	ft_philo.h)
+	philo.h)
 FOLDER=srcs
 
-CC=gcc -g
+CC=clang -g
 CFLAGS=-Wall -Wextra -Werror -g3 -fsanitize=address
 RM=rm -f
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $^ $(INCLUDES)
+	$(CC) $(CFLAGS) -o $@ $^
 
 %.o: %.c
-	$(CC) -c $(CFLAGS) -o $@ $< $(INCLUDES)
+	$(CC) -c $(CFLAGS) -o $@ $< -I $(INCLUDES)
 
 clean:
-	$(RM) $(OBJS) $(OBJS_BONUS)
+	$(RM) $(OBJS)
 
 fclean: clean
-	$(RM) $(NAME) $(NAME_BONUS)
+	$(RM) $(NAME)
 
 re: fclean all
-
-re_bonus: fclean bonus
