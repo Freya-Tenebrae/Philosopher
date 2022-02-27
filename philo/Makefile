@@ -6,7 +6,7 @@
 #    By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/14 23:11:43 by cmaginot          #+#    #+#              #
-#    Updated: 2022/02/24 06:45:01 by cmaginot         ###   ########.fr        #
+#    Updated: 2022/02/27 12:33:53 by cmaginot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME=philo
@@ -14,7 +14,7 @@ NAME=philo
 SRCS=$(addprefix ${FOLDER}/, \
 	philo.c \
 	tools_parsing.c \
-	tools_init.c \
+	tools_init_close.c \
 	tools_atoi.c)
 OBJS=$(SRCS:.c=.o)
 
