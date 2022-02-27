@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 04:46:01 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/27 12:37:06 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/02/27 15:42:51 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,3 @@ int	main(int argc, char **argv)
 	free (scene.philo);
 	return (0);
 }
-	// before the last return
-	// create all thread
-	// loop while all philo are alive / philo eat n time (if argc == 6)
-	// join all thread

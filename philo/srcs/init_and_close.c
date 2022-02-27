@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools_init_close.c                                 :+:      :+:    :+:   */
+/*   init_and_close.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 05:49:57 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/27 12:38:32 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/02/27 16:55:35 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
-
-void *ft_call_itself(void *arg)
-{
-	t_philo *philo;
-
-	philo = (t_philo *)arg;
-	printf("id_philo : %i\n", philo->id);
-	return (NULL);
-}
 
 int	init(t_scene *scene)
 {
 	int	i;
 
 	i = -1;
+	pthread_mutex_init(&scene->message, NULL);
 	while (++i < scene->nbr_philo)
 	{
-		pthread_create(&(scene->philo[i].philo_thread), NULL, ft_call_itself, 
+		pthread_create(&(scene->philo[i].philo_thread), NULL, philo_loop, \
 			(void *)&(scene->philo[i]));
 	}
 	return (0);

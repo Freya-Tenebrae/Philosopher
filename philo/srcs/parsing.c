@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools_parsing.c                                    :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 05:49:57 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/27 12:13:59 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/02/27 15:42:50 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int parsing_philo(t_scene *scene)
+static int	parsing_philo(t_scene *scene)
 {
 	int	i;
 
 	i = -1;
 	while (++i < scene->nbr_philo)
 	{
-		scene->philo[i].id = i;
+		scene->philo[i].id = i + 1;
 		scene->philo[i].status_philo = ALIVE;
 		scene->philo[i].status_start = 0;
 		scene->philo[i].number_of_time_eat = 0;
+		scene->philo[i].scene = scene;
 	}
 	return (0);
 }
 
-int	parsing_2(t_scene *scene, int argc, char **argv)
+static int	parsing_2(t_scene *scene, int argc, char **argv)
 {
 	if (argc == 6)
 	{
