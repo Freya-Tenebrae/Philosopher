@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 04:46:01 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/27 16:43:05 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/02/27 17:16:07 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct 	s_scene {
 /*                                  FONCTION                                  */
 /* ************************************************************************** */
 int		main(int argc, char **argv);
+int		check_if_all_num(int argc, char **argv);
 int		parsing(t_scene *scene, int argc, char **argv);
 int		init(t_scene *scene);
 void	close_thread(t_scene *scene);

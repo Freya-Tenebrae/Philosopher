@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 04:46:01 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/27 15:42:51 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/02/27 17:26:58 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ int	main(int argc, char **argv)
 
 	if (argc != 5 && argc != 6)
 	{
-		printf("Error : incorrect number of arguments.\n");
-		printf("%i arguments given, 4 or 5 expected.\n", argc - 1);
+		write(1, "Error : incorrect number of arguments.\n", 39);
+		ft_putnbr(argc - 1);
+		write(1, " arguments given, 4 or 5 expected.\n", 35);
 		return (-1);
 	}
-	// voir pour message d'erreur si un char present sur arg (ft_check args(argc, argv) to make)
+	if (check_if_all_num(argc, argv) != 0)
+		return (-1);
 	if (parsing(&scene, argc, argv) != 0)
 		return (-1);
 							printf("nb_philo : %i\n", scene.nbr_philo);
