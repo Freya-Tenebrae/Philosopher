@@ -6,7 +6,7 @@
 #    By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/14 23:11:43 by cmaginot          #+#    #+#              #
-#    Updated: 2022/02/27 15:38:17 by cmaginot         ###   ########.fr        #
+#    Updated: 2022/02/27 18:08:23 by cmaginot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME=philo
@@ -17,6 +17,7 @@ SRCS=$(addprefix ${FOLDER}/, \
 	messages.c \
 	parsing.c \
 	init_and_close.c \
+	tools_check_if_all_num.c \
 	tools_atoi.c \
 	tools_putnbr.c \
 	tools_time.c)
