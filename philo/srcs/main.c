@@ -6,15 +6,11 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 04:46:01 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/27 17:46:15 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/02/27 17:59:01 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
-
-// ARGV = 5 : simulation end when a philosopher die
-// ARGV = 6 : simulation end when a philosopher die or when each philosopher
-			// eat n times
 
 int	main(int argc, char **argv)
 {
