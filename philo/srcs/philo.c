@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 12:42:59 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/27 16:57:19 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/02/27 17:47:14 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	*philo_loop(void *arg)
 		next_philo = &(philo->scene->philo[philo->id]);
 	else
 		next_philo = &(philo->scene->philo[0]);
-	printf("id_philo : %i | id_next_philo : %i\n", philo->id, next_philo->id);
 	while (philo->scene->status_scene == RUNNING)
 	{
 		usleep(1000);

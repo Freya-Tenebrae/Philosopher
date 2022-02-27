@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 14:38:01 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/27 15:43:24 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/02/27 17:42:08 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static unsigned long	get_time(void)
 {
-	struct			timeval tv;
+	struct timeval	tv;
 	unsigned long	time;
 
 	gettimeofday(&tv, NULL);
@@ -23,10 +23,10 @@ static unsigned long	get_time(void)
 	return (time);
 }
 
-int get_timestamp(void)
+int	get_timestamp(void)
 {
-	static unsigned long time_start;
-	int	timestamp;
+	static unsigned long	time_start;
+	int						timestamp;
 
 	if (!time_start)
 		time_start = get_time();

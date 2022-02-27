@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 23:20:24 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/27 15:44:14 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/02/27 17:43:13 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putchar(char c)
 {
-	write (1, &c , 1);
+	write(1, &c, 1);
 }
 
 void	ft_putnbr(int n)

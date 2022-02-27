@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 04:46:01 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/27 17:16:07 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/02/27 17:45:15 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_philo {
 	struct s_scene	*scene;
 }					t_philo;
 
-typedef struct 	s_scene {
+typedef struct s_scene {
 	int				nbr_philo;
 	int				time_to_die;
 	int				time_to_eat;

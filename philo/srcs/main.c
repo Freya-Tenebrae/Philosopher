@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 04:46:01 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/27 17:26:58 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/02/27 17:46:15 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,6 @@ int	main(int argc, char **argv)
 		return (-1);
 	if (parsing(&scene, argc, argv) != 0)
 		return (-1);
-							printf("nb_philo : %i\n", scene.nbr_philo);
-							printf("time_to_die : %i\n", scene.time_to_die);
-							printf("time_to_eat : %i\n", scene.time_to_eat);
-							printf("time_to_sleep : %i\n", scene.time_to_sleep);
-							printf("nb_eat : %i : %i\n", scene.number_of_time_eating_set, \
-								scene.number_of_time_eating);
 	if (init(&scene) != 0)
 		return (-1);
 	close_thread(&scene);

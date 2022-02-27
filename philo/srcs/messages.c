@@ -6,13 +6,13 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 14:04:07 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/27 16:55:42 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/02/27 17:42:46 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-static void message_type(int type_message)
+static void	message_type(int type_message)
 {
 	if (type_message == MESSAGE_FORK)
 		write(1, " has taken a fork\n", 18);
@@ -26,7 +26,7 @@ static void message_type(int type_message)
 		write(1, " died\n", 6);
 }
 
-void message(int type_message, t_philo *philo)
+void	message(int type_message, t_philo *philo)
 {
 	int	timestamp;
 

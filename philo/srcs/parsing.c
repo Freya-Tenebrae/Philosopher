@@ -6,13 +6,13 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 05:49:57 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/27 17:30:51 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/02/27 17:43:40 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-static int is_num(char c)
+static int	is_num(char c)
 {
 	if (c >= '0' && c <= '9')
 		return (0);
@@ -21,7 +21,7 @@ static int is_num(char c)
 
 int	check_if_all_num(int argc, char **argv)
 {
-	int i;
+	int	i;
 	int	j;
 
 	i = 0;
