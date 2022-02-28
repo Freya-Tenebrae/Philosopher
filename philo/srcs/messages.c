@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 14:04:07 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/28 13:36:33 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/02/28 14:42:33 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,12 @@ void	message(int type_message, t_philo *philo)
 	timestamp = get_timestamp();
 	pthread_mutex_unlock(&philo->scene->lock);
 	pthread_mutex_lock(&philo->scene->message);
-	ft_putnbr(timestamp);
-	write(1, " ", 1);
-	ft_putnbr(philo->id);
-	message_type(type_message);
+	if (philo->scene->status_scene == RUNNING)
+	{
+		ft_putnbr(timestamp);
+		write(1, " ", 1);
+		ft_putnbr(philo->id);
+		message_type(type_message);
+	}
 	pthread_mutex_unlock(&philo->scene->message);
 }

@@ -6,66 +6,65 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 04:46:01 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/28 13:34:44 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/02/28 15:32:03 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
+static void	everyone_eat(t_scene *scene)
+{
+	int	i;
+	int	res;
+
+	i = -1;
+	res = 0;
+	if (scene->number_of_time_eating == 0)
+		res = 1;
+	else
+	{
+		while (++i < scene->nbr_philo)
+		{
+			pthread_mutex_lock(&scene->lock);
+			if (scene->philo[i].number_of_time_eat <= \
+												scene->number_of_time_eating)
+				res = 1;
+			pthread_mutex_unlock(&scene->lock);
+		}
+	}
+	if (res == 0)
+	{
+		pthread_mutex_lock(&scene->lock);
+		scene->status_scene = STOPPED;
+		pthread_mutex_unlock(&scene->lock);
+	}
+
+}
+
 static void	update_status_philo(t_scene *scene)
 {
-	// int	i;
-	// int	timestamp;
+	int	i;
+	int	timestamp;
 
-	// i = -1;
-	// pthread_mutex_lock(&scene->lock);
-	// timestamp = get_timestamp();
-	// pthread_mutex_unlock(&scene->lock);
-	// while (++i < scene->nbr_philo)
-	// {
-	// 	pthread_mutex_lock(&scene->lock);
-	// 	if (timestamp - scene->philo[i].time_start_last_meal >= \
-	// 														scene->time_to_die)
-	// 	{
-	// 		scene->philo[i].status_philo = DEAD;
-	// 	}
-	// 	pthread_mutex_unlock(&scene->lock);
-	// }
-	
-	(void)scene;
-}
-
-static int	everyone_eat(t_scene scene)
-{
-// 	int	i;
-
-// 	i = -1;
-// 	if (scene->number_of_time_eating == 0)
-// 		return (0);
-// 	while (++i < scene->nbr_philo)
-// 	{
-// 		if (scene->philo[i].number_of_time_eat == scene->number_of_time_eating)
-// 			return (1);
-// 	}
-// 	return (0);
-
-	(void)scene;
-	return (1); // to delete
-}
-
-static int	everyone_alive(t_scene scene)
-{
-	// int	i;
-
-	// i = -1;
-	// while (++i < scene.nbr_philo)
-	// {
-	// 	if (scene.philo[i].status_philo == DEAD)
-	// 		return (-1);
-	// }
-
-	(void)scene;
-	return (0);
+	i = -1;
+	pthread_mutex_lock(&scene->lock);
+	timestamp = get_timestamp();
+	pthread_mutex_unlock(&scene->lock);
+	while (++i < scene->nbr_philo)
+	{
+		pthread_mutex_lock(&scene->lock);
+		if (timestamp - scene->philo[i].time_start_last_meal >= \
+															scene->time_to_die)
+		{
+			pthread_mutex_unlock(&scene->lock);
+			message(MESSAGE_DIE, &scene->philo[i]);
+			pthread_mutex_lock(&scene->lock);
+			scene->status_scene = STOPPED;
+		}
+		pthread_mutex_unlock(&scene->lock);
+	}
+	if (scene->status_scene == RUNNING)
+		everyone_eat(scene);
 }
 
 int	main(int argc, char **argv)
@@ -86,11 +85,7 @@ int	main(int argc, char **argv)
 	if (init(&scene) != 0)
 		return (-1);
 	while (scene.status_scene == RUNNING)
-	{
 		update_status_philo(&scene);
-		if (everyone_alive(scene) != 0 || everyone_eat(scene) == 0)
-			scene.status_scene = STOPPED;
-	}
 	close_thread(&scene);
 	free (scene.philo);
 	return (0);

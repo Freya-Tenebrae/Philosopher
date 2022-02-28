@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 12:42:59 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/28 13:38:12 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/02/28 15:23:46 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static void	philo_sleep(t_philo *philo)
 {
 	message(MESSAGE_SLEEP, philo);
-	philo->status_philo = SLEEPING;
 	usleep(1000 * philo->scene->time_to_sleep);
 }
 
@@ -27,9 +26,9 @@ static void	philo_eat(t_philo *philo, t_philo *next_philo)
 	pthread_mutex_lock(&next_philo->fork);
 	message(MESSAGE_FORK, philo);
 	message(MESSAGE_EAT, philo);
-	philo->status_philo = EATING;
 	pthread_mutex_lock(&philo->scene->lock);
 	philo->time_start_last_meal = get_timestamp();
+	philo->number_of_time_eat += 1;
 	pthread_mutex_unlock(&philo->scene->lock);
 	usleep(1000 * philo->scene->time_to_eat);
 	pthread_mutex_unlock(&philo->fork);
@@ -46,12 +45,16 @@ void	*philo_loop(void *arg)
 		next_philo = &(philo->scene->philo[philo->id]);
 	else
 		next_philo = &(philo->scene->philo[0]);
-	while (philo->scene->status_scene == RUNNING && philo->status_philo != DEAD)
+	while (1)
 	{
-		philo->status_philo = THINKING;
 		message(MESSAGE_THINK, philo);
 		philo_eat(philo, next_philo);
 		philo_sleep(philo);
+		pthread_mutex_lock(&philo->scene->lock);
+		if (philo->scene->status_scene == STOPPED)
+			break ;
+		pthread_mutex_unlock(&philo->scene->lock);
 	}
+	pthread_mutex_unlock(&philo->scene->lock);
 	return (NULL);
 }

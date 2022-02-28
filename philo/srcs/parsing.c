@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 05:49:57 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/28 13:10:29 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/02/28 14:45:27 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static int	parsing_philo(t_scene *scene)
 	while (++i < scene->nbr_philo)
 	{
 		scene->philo[i].id = i + 1;
-		scene->philo[i].status_philo = ALIVE;
 		scene->philo[i].time_start_last_meal = 0;
 		scene->philo[i].number_of_time_eat = 0;
 		scene->philo[i].scene = scene;

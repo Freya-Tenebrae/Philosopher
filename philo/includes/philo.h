@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 04:46:01 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/28 13:10:34 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/02/28 14:45:15 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,6 @@
 //limits
 # define NB_MAX_PHILO 1024
 
-//status philo
-# define EATING 1
-# define THINKING 2
-# define SLEEPING 3
-# define ALIVE 0
-# define DEAD -1
-
 //status scene
 # define RUNNING 0
 # define STOPPED -1
@@ -53,7 +46,6 @@
 typedef struct s_philo {
 	int				id;
 	pthread_t		philo_thread;
-	int				status_philo;
 	int				time_start_last_meal;
 	int				number_of_time_eat;
 	pthread_mutex_t	fork;
