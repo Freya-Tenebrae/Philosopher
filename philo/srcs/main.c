@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 04:46:01 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/28 16:24:52 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/02/28 16:43:09 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ static void	update_status_philo(t_scene *scene)
 	int	timestamp;
 
 	i = -1;
-	pthread_mutex_lock(&scene->lock);
+	// pthread_mutex_lock(&scene->lock);
 	timestamp = get_timestamp();
-	pthread_mutex_unlock(&scene->lock);
+	// pthread_mutex_unlock(&scene->lock);
 	while (++i < scene->nbr_philo)
 	{
 		pthread_mutex_lock(&scene->lock);
