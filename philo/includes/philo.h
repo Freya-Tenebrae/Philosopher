@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 04:46:01 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/28 06:19:38 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/02/28 13:10:34 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_scene {
 	int				number_of_time_eating_set;
 	int				status_scene;
 	pthread_mutex_t	message;
+	pthread_mutex_t	lock;
 	t_philo			*philo;
 }					t_scene;
 

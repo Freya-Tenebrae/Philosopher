@@ -6,14 +6,35 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 04:46:01 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/28 06:50:58 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/02/28 12:47:41 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-// static int everyone_eat(t_scene *scene)
-// {
+static void	update_status_philo(t_scene *scene)
+{
+	int	i;
+	int	timestamp;
+
+	i = -1;
+	pthread_mutex_lock(&scene->lock);
+	timestamp = get_timestamp();
+	pthread_mutex_unlock(&scene->lock);
+	while (++i < scene->nbr_philo)
+	{
+		pthread_mutex_lock(&scene->lock);
+		if (timestamp - scene->philo[i].time_start_last_meal >= \
+															scene->time_to_die)
+		{
+			scene->philo[i].status_philo = DEAD;
+		}
+		pthread_mutex_unlock(&scene->lock);
+	}
+}
+
+static int	everyone_eat(t_scene scene)
+{
 // 	int	i;
 
 // 	i = -1;
@@ -25,20 +46,25 @@
 // 			return (1);
 // 	}
 // 	return (0);
-// }
 
-// static int everyone_alive(t_scene *scene)
-// {
-// 	int	i;
+	(void)scene;
+	return (1); // to delete
+}
 
-// 	i = -1;
-// 	while (++i < scene->nbr_philo)
-// 	{
-// 		if (scene->philo[i].status_philo == DEAD)
-// 			return (-1);
-// 	}
-// 	return (0);
-// }
+static int	everyone_alive(t_scene scene)
+{
+	// int	i;
+
+	// i = -1;
+	// while (++i < scene.nbr_philo)
+	// {
+	// 	if (scene.philo[i].status_philo == DEAD)
+	// 		return (-1);
+	// }
+
+	(void)scene;
+	return (0);
+}
 
 int	main(int argc, char **argv)
 {
@@ -57,11 +83,12 @@ int	main(int argc, char **argv)
 		return (-1);
 	if (init(&scene) != 0)
 		return (-1);
-	// while (scene.status_scene == RUNNING)
-	// {
-	// 	if (everyone_alive(&scene) != 0 || everyone_eat(&scene) == 0)
-	// 		scene.status_scene = STOPPED;
-	// }
+	while (scene.status_scene == RUNNING)
+	{
+		update_status_philo(&scene);
+		if (everyone_alive(scene) != 0 || everyone_eat(scene) == 0)
+			scene.status_scene = STOPPED;
+	}
 	close_thread(&scene);
 	free (scene.philo);
 	return (0);
