@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 05:49:57 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/27 18:01:20 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/02/28 05:46:37 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	parsing_philo(t_scene *scene)
 	{
 		scene->philo[i].id = i + 1;
 		scene->philo[i].status_philo = ALIVE;
-		scene->philo[i].status_start = 0;
+		scene->philo[i].time_start_last_meal = 0;
 		scene->philo[i].number_of_time_eat = 0;
 		scene->philo[i].scene = scene;
 	}
@@ -63,6 +63,11 @@ int	parsing(t_scene *scene, int argc, char **argv)
 	{
 		write(1, \
 			"Error : number of philosopher can't be null or negetive.\n", 57);
+		return (-1);
+	}
+	else if (scene->nbr_philo > NB_MAX_PHILO)
+	{
+		write(1, "Error : number of philosopher too hight.\n", 41);
 		return (-1);
 	}
 	scene->time_to_die = ft_atoi(argv[2]);

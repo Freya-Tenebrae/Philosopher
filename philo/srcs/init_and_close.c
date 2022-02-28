@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 05:49:57 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/27 16:55:35 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/02/28 06:32:44 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	init(t_scene *scene)
 	{
 		pthread_create(&(scene->philo[i].philo_thread), NULL, philo_loop, \
 			(void *)&(scene->philo[i]));
+		//pthread_mutex_init(&scene->philo[i].fork, NULL);
 	}
 	return (0);
 }

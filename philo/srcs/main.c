@@ -6,11 +6,39 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 04:46:01 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/27 17:59:01 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/02/28 06:50:58 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+// static int everyone_eat(t_scene *scene)
+// {
+// 	int	i;
+
+// 	i = -1;
+// 	if (scene->number_of_time_eating == 0)
+// 		return (0);
+// 	while (++i < scene->nbr_philo)
+// 	{
+// 		if (scene->philo[i].number_of_time_eat == scene->number_of_time_eating)
+// 			return (1);
+// 	}
+// 	return (0);
+// }
+
+// static int everyone_alive(t_scene *scene)
+// {
+// 	int	i;
+
+// 	i = -1;
+// 	while (++i < scene->nbr_philo)
+// 	{
+// 		if (scene->philo[i].status_philo == DEAD)
+// 			return (-1);
+// 	}
+// 	return (0);
+// }
 
 int	main(int argc, char **argv)
 {
@@ -29,6 +57,11 @@ int	main(int argc, char **argv)
 		return (-1);
 	if (init(&scene) != 0)
 		return (-1);
+	// while (scene.status_scene == RUNNING)
+	// {
+	// 	if (everyone_alive(&scene) != 0 || everyone_eat(&scene) == 0)
+	// 		scene.status_scene = STOPPED;
+	// }
 	close_thread(&scene);
 	free (scene.philo);
 	return (0);
