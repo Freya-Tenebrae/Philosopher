@@ -13,8 +13,9 @@ This Repositorie contains my solution to the project `Philosophers` of 42 (Paris
 - [x] threading
 - [x] message management
 - [x] philo loop, fonction for sleeping and thinking
-- [ ] fonction for taking fork and manage fork for eating
-- [ ] simulation end management and manage fork needed for it
-- [ ] error management
-- [ ] leaks
+- [x] fonction for taking fork and manage fork for eating
+- [x] simulation end management and manage fork needed for it
+- [x] error management
+- [x] leaks
+- [ ] optimisation
 - [ ] norm

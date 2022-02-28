@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 04:46:01 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/28 15:32:03 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/02/28 16:24:52 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static void	everyone_eat(t_scene *scene)
 		scene->status_scene = STOPPED;
 		pthread_mutex_unlock(&scene->lock);
 	}
-
 }
 
 static void	update_status_philo(t_scene *scene)
