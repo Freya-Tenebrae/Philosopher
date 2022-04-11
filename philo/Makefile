@@ -6,7 +6,7 @@
 #    By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/14 23:11:43 by cmaginot          #+#    #+#              #
-#    Updated: 2022/02/28 16:39:09 by cmaginot         ###   ########.fr        #
+#    Updated: 2022/03/01 17:05:23 by cmaginot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME=philo
@@ -27,8 +27,8 @@ INCLUDES=$(addprefix includes/, \
 	philo.h)
 FOLDER=srcs
 
-CC=clang -g
-CFLAGS=-Wall -Wextra -Werror -g3 -fsanitize=thread
+CC=clang
+CFLAGS=-Wall -Wextra -Werror -pthread
 RM=rm -f
 
 all: $(NAME)

@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 04:46:01 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/28 16:43:09 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/03/01 19:03:29 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	everyone_eat(t_scene *scene)
 
 	i = -1;
 	res = 0;
-	if (scene->number_of_time_eating == 0)
+	if (scene->number_of_time_eating_set == 0)
 		res = 1;
 	else
 	{
@@ -46,9 +46,9 @@ static void	update_status_philo(t_scene *scene)
 	int	timestamp;
 
 	i = -1;
-	// pthread_mutex_lock(&scene->lock);
+	pthread_mutex_lock(&scene->lock);
 	timestamp = get_timestamp();
-	// pthread_mutex_unlock(&scene->lock);
+	pthread_mutex_unlock(&scene->lock);
 	while (++i < scene->nbr_philo)
 	{
 		pthread_mutex_lock(&scene->lock);
@@ -66,26 +66,41 @@ static void	update_status_philo(t_scene *scene)
 		everyone_eat(scene);
 }
 
+static void	write_error_arg(int argc)
+{
+	write(1, "Error : incorrect number of arguments.\n", 39);
+	ft_putnbr(argc - 1);
+	write(1, " arguments given, 4 or 5 expected.\n", 35);
+	write(1, "arg = number_of_philosophers time_to_die time_to_eat", 52);
+	write(1, "time_to_sleep", 13);
+	write(1, "[number_of_times_each_philosopher_must_eat]\n", 44);
+}
+
 int	main(int argc, char **argv)
 {
 	t_scene	scene;
 
 	if (argc != 5 && argc != 6)
 	{
-		write(1, "Error : incorrect number of arguments.\n", 39);
-		ft_putnbr(argc - 1);
-		write(1, " arguments given, 4 or 5 expected.\n", 35);
+		write_error_arg(argc);
 		return (-1);
 	}
 	if (check_if_all_num(argc, argv) != 0)
 		return (-1);
 	if (parsing(&scene, argc, argv) != 0)
 		return (-1);
-	if (init(&scene) != 0)
-		return (-1);
-	while (scene.status_scene == RUNNING)
-		update_status_philo(&scene);
-	close_thread(&scene);
+	if (!(scene.number_of_time_eating_set == 1 && \
+		scene.number_of_time_eating == 0))
+	{
+		if (init(&scene) != 0)
+			return (-1);
+		while (scene.status_scene == RUNNING)
+		{
+			usleep(100);
+			update_status_philo(&scene);
+		}
+		close_thread(&scene);
+	}
 	free (scene.philo);
 	return (0);
 }

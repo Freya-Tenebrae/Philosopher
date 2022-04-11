@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 05:49:57 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/28 14:45:27 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/03/01 18:59:59 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ static int	parsing_philo(t_scene *scene)
 	return (0);
 }
 
-static int	parsing_2(t_scene *scene, int argc, char **argv)
+static int	parsing_3(t_scene *scene, int argc, char **argv)
 {
 	if (argc == 6)
 	{
 		scene->number_of_time_eating_set = 1;
 		scene->number_of_time_eating = ft_atoi(argv[5]);
-		if (scene->number_of_time_eating <= 0)
+		if (scene->number_of_time_eating < 0)
 		{
 			write(1, "Error : incorrect number of time each philosopher ", 50);
 			write(1, "must eat.\n", 10);
@@ -55,20 +55,8 @@ static int	parsing_2(t_scene *scene, int argc, char **argv)
 	return (parsing_philo(scene));
 }
 
-int	parsing(t_scene *scene, int argc, char **argv)
+static int	parsing_2(t_scene *scene, int argc, char **argv)
 {
-	scene->nbr_philo = ft_atoi(argv[1]);
-	if (scene->nbr_philo <= 0)
-	{
-		write(1, \
-			"Error : number of philosopher can't be null or negetive.\n", 57);
-		return (-1);
-	}
-	else if (scene->nbr_philo > NB_MAX_PHILO)
-	{
-		write(1, "Error : number of philosopher too hight.\n", 41);
-		return (-1);
-	}
 	scene->time_to_die = ft_atoi(argv[2]);
 	if (scene->time_to_die <= 0)
 	{
@@ -85,6 +73,23 @@ int	parsing(t_scene *scene, int argc, char **argv)
 	if (scene->time_to_sleep <= 0)
 	{
 		write(1, "Error : time to sleep can't be null or negetive.\n", 49);
+		return (-1);
+	}
+	return (parsing_3(scene, argc, argv));
+}
+
+int	parsing(t_scene *scene, int argc, char **argv)
+{
+	scene->nbr_philo = ft_atoi(argv[1]);
+	if (scene->nbr_philo <= 0)
+	{
+		write(1, \
+			"Error : number of philosopher can't be null or negetive.\n", 57);
+		return (-1);
+	}
+	else if (scene->nbr_philo > NB_MAX_PHILO)
+	{
+		write(1, "Error : number of philosopher too hight.\n", 41);
 		return (-1);
 	}
 	return (parsing_2(scene, argc, argv));

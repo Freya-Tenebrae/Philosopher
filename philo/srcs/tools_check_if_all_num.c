@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 18:01:40 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/02/28 06:38:18 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/03/01 19:17:45 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	check_if_all_num(int argc, char **argv)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (++i < argc)
+	i = 1;
+	while (i < argc)
 	{
 		j = 0;
 		while (argv[i][j] != 0)
