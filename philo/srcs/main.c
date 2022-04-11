@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 04:46:01 by cmaginot          #+#    #+#             */
-/*   Updated: 2022/03/01 19:03:29 by cmaginot         ###   ########.fr       */
+/*   Updated: 2022/04/11 17:00:38 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	everyone_eat(t_scene *scene)
 		while (++i < scene->nbr_philo)
 		{
 			pthread_mutex_lock(&scene->lock);
-			if (scene->philo[i].number_of_time_eat <= \
+			if (scene->philo[i].number_of_time_eat < \
 												scene->number_of_time_eating)
 				res = 1;
 			pthread_mutex_unlock(&scene->lock);
@@ -72,7 +72,7 @@ static void	write_error_arg(int argc)
 	ft_putnbr(argc - 1);
 	write(1, " arguments given, 4 or 5 expected.\n", 35);
 	write(1, "arg = number_of_philosophers time_to_die time_to_eat", 52);
-	write(1, "time_to_sleep", 13);
+	write(1, " time_to_sleep ", 15);
 	write(1, "[number_of_times_each_philosopher_must_eat]\n", 44);
 }
 
